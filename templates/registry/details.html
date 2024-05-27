@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gift Registry | Details</title>
+</head>
+<body>
+    <h3>Gift Details</h3><br>
+    <p>
+        <strong>Name:</strong> {{ gift.name }}<br>
+        <strong>Description:</strong> {{ gift.description }}<br>       
+    </p><br>
+    {% if not gift.purchased %}
+        <form method="post" action="{% url 'registry:purchase' gift.id %}">
+            {% csrf_token %}
+            <input type="submit" value="Mark As Purchased">
+        </form>
+    {% else %}
+        <p>Status: Purchased</p>
+    {% endif %}
+    <a href="{% url 'registry:index' %}">Back to Gift List</a>
+</body>
+</html>

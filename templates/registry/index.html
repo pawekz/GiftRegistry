@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gift Registry | Home</title>
+</head>
+<body>
+    <h2>Gift Registry</h2><br>
+    <h3>Gift List</h3><br>
+    {% csrf_token %}
+{% for gift in gift_list %}
+    <p>
+        <a href="{% url 'registry:detail' gift.id %}">
+            * {{ gift.name }} - See Details
+        </a>
+    </p><br>
+{% empty %}
+    <p>No gifts found.</p>
+{% endfor %}
+</body>
+</html>
